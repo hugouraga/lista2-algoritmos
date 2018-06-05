@@ -1,4 +1,5 @@
-# lista2-algoritmos
+# lista 2 - algoritmos e estrutura de dados
+# 
 
 Q1 - Implemente uma classe Grafo. Para isso suponha que seus vértices são apenas
 números, e que variam sempre de 0 até n (onde n é o tamanho do grafo, número de
