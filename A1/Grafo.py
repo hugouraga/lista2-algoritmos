@@ -48,4 +48,6 @@ class Grafo:
             aux += 1
             objeto = objeto.proximo
         return s
+    def __len__(self,quantVertices):
+        return self.quantVertices
 
