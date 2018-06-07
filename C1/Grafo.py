@@ -32,7 +32,7 @@ class Grafo:
         aux = self.listaVertices.grauSaida(vertice)
         return aux
 
-    def listaAdjacentes(self,vertice):
+    def getAdj(self,vertice):
         lista = self.listaVertices.listaAd(vertice)
         return lista
 
@@ -48,4 +48,33 @@ class Grafo:
             aux += 1
             objeto = objeto.proximo
         return s
+    def __len__(self):
+        return self.quantVertices
+def b(grafo):
+    marcado = [False] * len(grafo)
+    antecessor = [-1] * len(grafo)
+    vertices = []
+    for i in range(0,len(grafo)):
+        if marcado[i] == False:
+            vertices.append(i)
+            marcado[i] = True
+            while len(vertices) > 0:
+                v = vertices.pop(0)
 
+                for u in grafo.getAdj(v):
+                    if marcado[u[0]] == False:
+                        marcado[u[0]] = True
+                        antecessor[u[0]] = v
+                        vertices.append(u[0])
+    for i in range(0,len(grafo)):
+        print(antecessor[i])
+    return antecessor
+
+def caminho(origem, v, antecessor):
+    if origem == v:
+        print(v)
+    elif antecessor[v] == -1:
+        print("nao ha caminho entre origem e destino")
+    else:
+        caminho(origem, antecessor[v], antecessor)
+        print(v)
