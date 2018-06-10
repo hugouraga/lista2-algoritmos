@@ -12,10 +12,10 @@ class Grafo:
     def vazia(self):
         return self.quantVertices == 0
 
-    def inseAres(self,verticeA,verticeB,grafoDirecionado,peso=1):
-        if self.grafoDirecionado == False:
+    def inseAres(self,verticeA,verticeB,grafoDirecionado=None,peso=1):
+        if grafoDirecionado == False:
             self.listaVertices.inserirAresNaoDire(verticeA,verticeB)
-        elif self.grafoDirecionado == True:
+        elif grafoDirecionado == True:
             self.listaVertices.inserirAresDire(verticeA,verticeB)
 
     def verifica(self,verticeA,verticeB):
@@ -26,10 +26,12 @@ class Grafo:
         self.listaVertices.removeAresta(verticeA,verticeB)
 
     def grauEntrada(self,vertice):
-        pass
+        grau = self.listaVertices.grauEntrada(vertice)
+        return grau
 
     def grauSaida(self,vertice):
         aux = self.listaVertices.grauSaida(vertice)
+        print(aux)
         return aux
 
     def listaAdjacentes(self,vertice):
@@ -48,4 +50,11 @@ class Grafo:
             aux += 1
             objeto = objeto.proximo
         return s
+    def FUNCAOUtil(self,grafo,visitado):
+        for i in self.grafo[v]:
+            if visitado[i] == False:
+                self.FUNCAOUtil(i, visitado)
 
+    def FUNCAO(self,grafo):
+        visitado = [False]*(len(grafo))
+        self.FUNCAOUtil(grafo,visitado)
