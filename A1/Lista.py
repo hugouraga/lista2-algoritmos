@@ -30,7 +30,7 @@ class Lista:
             verificador += 1
         aux.item.append((verticeA,peso))
 
-    def insereAresDire(self,verticeA,verticeB,peso=1):
+    def inserirAresDire(self,verticeA,verticeB,peso=1):
         aux = self.primeiro.proximo
         verificador = 0
         while verificador < verticeA and not aux is None:
@@ -96,6 +96,17 @@ class Lista:
         listaTam = len(aux.item)
         return listaTam
 
+    def grauEntrada(self,vertice):
+        aux = self.primeiro.proximo
+        grau = 0
+        while not aux is None:
+            vetor = aux.item
+            for elemento in vetor:
+                if elemento[0] == vertice:
+                    grau += 1
+            aux = aux.proximo
+        print(grau)
+        return grau
     def listaAd(self,vertice):
         aux = self.primeiro.proximo
         verificador  = 0

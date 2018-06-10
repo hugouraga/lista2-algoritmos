@@ -12,10 +12,10 @@ class Grafo:
     def vazia(self):
         return self.quantVertices == 0
 
-    def inseAres(self,verticeA,verticeB,grafoDirecionado,peso=1):
-        if self.grafoDirecionado == False:
+    def inseAres(self,verticeA,verticeB,grafoDirecionado=None,peso=1):
+        if grafoDirecionado == False:
             self.listaVertices.inserirAresNaoDire(verticeA,verticeB)
-        elif self.grafoDirecionado == True:
+        elif grafoDirecionado == True:
             self.listaVertices.inserirAresDire(verticeA,verticeB)
 
     def verifica(self,verticeA,verticeB):
@@ -26,13 +26,15 @@ class Grafo:
         self.listaVertices.removeAresta(verticeA,verticeB)
 
     def grauEntrada(self,vertice):
-        pass
+        grau = self.listaVertices.grauEntrada(vertice)
+        return grau
 
     def grauSaida(self,vertice):
         aux = self.listaVertices.grauSaida(vertice)
+        print(aux)
         return aux
 
-    def getAdj(self,vertice):
+    def listaAdjacentes(self,vertice):
         lista = self.listaVertices.listaAd(vertice)
         return lista
 
@@ -48,33 +50,11 @@ class Grafo:
             aux += 1
             objeto = objeto.proximo
         return s
-    def __len__(self):
-        return self.quantVertices
-def b(grafo):
-    marcado = [False] * len(grafo)
-    antecessor = [-1] * len(grafo)
-    vertices = []
-    for i in range(0,len(grafo)):
-        if marcado[i] == False:
-            vertices.append(i)
-            marcado[i] = True
-            while len(vertices) > 0:
-                v = vertices.pop(0)
+    def FUNCAOUtil(self,grafo,visitado):
+        for i in self.grafo[v]:
+            if visitado[i] == False:
+                self.FUNCAOUtil(i, visitado)
 
-                for u in grafo.getAdj(v):
-                    if marcado[u[0]] == False:
-                        marcado[u[0]] = True
-                        antecessor[u[0]] = v
-                        vertices.append(u[0])
-    for i in range(0,len(grafo)):
-        print(antecessor[i])
-    return antecessor
-
-def caminho(origem, v, antecessor):
-    if origem == v:
-        print(v)
-    elif antecessor[v] == -1:
-        print("nao ha caminho entre origem e destino")
-    else:
-        caminho(origem, antecessor[v], antecessor)
-        print(v)
+    def FUNCAO(self,grafo):
+        visitado = [False]*(len(grafo))
+        self.FUNCAOUtil(grafo,visitado)
