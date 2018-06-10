@@ -1,0 +1,4 @@
+O algoritmo referente a questão A1, é o algoritmo de busca em largura que retorna o menor caminho, caso ele exista, entre dois vertices.
+O camnho mais curto entre os dois vértices(origem e destino) é obtido pelo vetor de antecessores que é gerado pelo algoritmo.
+Ele percorre seus antecessores até a origem, caso algum antecessor que não seja a origem não possua antecessor, significa
+que não existe caminho entre os dois vértices.
