@@ -50,11 +50,3 @@ class Grafo:
             aux += 1
             objeto = objeto.proximo
         return s
-    def FUNCAOUtil(self,grafo,visitado):
-        for i in self.grafo[v]:
-            if visitado[i] == False:
-                self.FUNCAOUtil(i, visitado)
-
-    def FUNCAO(self,grafo):
-        visitado = [False]*(len(grafo))
-        self.FUNCAOUtil(grafo,visitado)

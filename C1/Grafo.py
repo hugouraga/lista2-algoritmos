@@ -50,22 +50,21 @@ class Grafo:
             aux += 1
             objeto = objeto.proximo
         return s
+    def __len__(self):
+        return self.quantVertices
 
-def b(grafo):
-    marcado = [False] * len(grafo)
-    antecessor = [-1] * len(grafo)
-    vertices = []
-    for i in range(0,len(grafo)):
-        if marcado[i] == False:
-            vertices.append(i)
-            marcado[i] = True
-            while len(vertices) > 0:
-                v = vertices.pop(0)
-                for u in grafo.getAdj(v):
-                if marcado[u] == False:
-                    marcado[u] = True
-                    antecessor[u] = v
-                    vertices.append(u)
+def FUNCAOUtil(grafo, v, visitado):
+    visitado[v] = True
+    adjacentes = grafo.listaAdjacentes(v)
+    print(adjacentes)
+    for i in adjacentes:
+        indice = i[0]
+        if visitado[indice] is False:
+            FUNCAOUtil(grafo, indice, visitado)
+    return visitado
 
-    return antecessor
+def FUNCAO(grafo,v):
+    visitado = [False] * len(grafo)
+    FUNCAOUtil(grafo, v, visitado)
+    return visitado
 
